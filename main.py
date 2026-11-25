@@ -40,6 +40,9 @@ def main() -> None:
     assert 1 <= len(ENTRY) <= MAX_CHARS, (
         f"entry is {len(ENTRY)} chars, gate wants 1-{MAX_CHARS}"
     )
+    # The brief wants the glyph alone: exactly one codepoint, so no
+    # caption, variation selector or second emoji can sneak in.
+    assert len(ENTRY) == 1, f"entry must be one glyph, got {len(ENTRY)} chars"
     assert "\n" not in ENTRY and "\r" not in ENTRY, "entry must be a single glyph"
     assert ENTRY.strip(), "entry must not be only whitespace"
     assert ENTRY == ENTRY.strip(), "entry must not start or end with whitespace"
